@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="import_action_inherit" inherit_id="base_import.ImportAction">
+        <xpath expr="//a[@href='https://www.odoo.com/documentation/17.0/applications/general/export_import_data.html']" position="replace">
+            <!-- Removed FAQ link -->
+        </xpath>
+    </template>
+</odoo>

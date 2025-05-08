@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="Chrome1"
+    t-inherit="point_of_sale.OrderReceipt"
+         t-inherit-mode="extension"
+        owl="1"
+    >
+    
+    <xpath expr="//div[hasclass('pos-receipt-order-data')]/p" position="replace">
+            <!--<attribute name="invisible">1</attribute>-->
+        </xpath>
+    </t>
+</templates>

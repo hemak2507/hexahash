@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="res_config_settings_view_form1" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.base.setup</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="0"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='contacts_settings']" position="replace">
+                     <h2>Contacts</h2>
+                            <div class="row mt16 o_settings_container" name="contacts_setting_container">
+                              
+                                <div class="col-xs-12 col-md-6 o_setting_box" title="When populating your address book, AECI Mining provides a list of matching companies. When selecting one item, the company data and logo are auto-filled." id="partner_autocomplete">
+                                    <div class="o_setting_left_pane">
+                                        <field name="module_partner_autocomplete" on_change="1"/>
+                                    </div>
+                                    <div class="o_setting_right_pane" id="partner_autocomplete_settings">
+                                        <label for="module_partner_autocomplete"/>
+                                        <div class="text-muted">
+                                            Automatically enrich your contact base with company data
+                                        </div>
+                                    </div>
+                                </div>
+
+                     </div>
+                     
+                   
+                </xpath>
+                <xpath expr="//div[@id='about']" position="replace">
+                    <h2>About</h2>
+                      </xpath>
+                     <!-- <xpath expr="//div[@name='iap_purchases_setting_container']" position="replace">
+                   <div class="text-muted">
+                                            Automatically enrich your contact base with company data
+                                        </div>
+                      </xpath>-->
+                      
+                    
+            </field>
+        </record>
+        
+        <!--<record id="res_config_settings_view_form14" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.base.setup</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="0"/>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//div[@id='appstore']" position="replace">
+                    <h2>About</h2>
+                      </xpath>
+                    
+                    
+            </field>
+        </record>-->
+
+       
+</odoo>

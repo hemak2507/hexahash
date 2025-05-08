@@ -1,0 +1,8 @@
+<odoo>
+    <data>
+        <!-- Inherit and hide the Lead Mining Request Menu -->
+        <record id="crm_iap_mine.crm_iap_lead_mining_request_menu_action" model="ir.ui.menu">
+            <field name="active">False</field>
+        </record>
+    </data>
+</odoo>

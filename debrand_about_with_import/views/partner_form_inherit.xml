@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <!-- Inherit the Partner Form View -->
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.view.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <!-- Locate the VAT field and add a custom placeholder -->
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="placeholder">e.g. 27AAACR4849R2ZK</attribute>
+                </xpath>
+            </field>
+        </record>
+         
+    </data>
+</odoo>

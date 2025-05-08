@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+   
+    <record id="crm_lead_view_tree_opportunity1" model="ir.ui.view">
+        <field name="name">crm.lead.view.tree.opportunity.inherit.iap.mine</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_generate_leads']" position="attributes">
+               <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!--<record id="crm_lead_view_tree_lead1" model="ir.ui.view">
+        <field name="name">crm.lead.view.tree.lead.inherit.iap.mine</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_generate_leads']" position="attributes">
+               <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>-->
+
+    <!--<record id="view_crm_lead_kanban1" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.inherit.iap.mine</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_lead_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_generate_leads'][1]" position="attributes">
+               <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>-->
+
+    <record id="crm_case_kanban_view_leads1" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.lead.inherit.iap.mine</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_generate_leads']" position="attributes">
+               <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    
+</odoo>

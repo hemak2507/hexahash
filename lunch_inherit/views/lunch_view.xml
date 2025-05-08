@@ -1,0 +1,21 @@
+<odoo>
+    
+   
+
+ <record id="lunch.menu_lunch" model="ir.ui.menu">
+            <field name="name">Load Card</field>
+        </record>
+        
+        <record id="lunch.menu_lunch_title" model="ir.ui.menu">
+            <field name="name">My Account</field>
+        </record>
+        
+         <record id="lunch.lunch_product_action_order" model="ir.actions.act_window">
+            <field name="name">Your Order</field>
+        </record>
+
+        
+        
+
+</odoo>
+

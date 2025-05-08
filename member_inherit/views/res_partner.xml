@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="membership.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+             <xpath expr="//field[@name='name']" position="attributes">
+               <attribute name="invisible">person_type in ['person','ngo','others']</attribute>
+            </xpath>
+            <!-- <xpath expr="//field[@name='parent_id']" position="attributes">
+                <attribute name="invisible">(person_type != 'company')</attribute>
+            </xpath> -->
+            <xpath expr="//field[@name='company_type']" position="after">
+                <field name="person_type" widget="radio" options="{'horizontal': true}" />
+            </xpath>
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="placeholder">Enter website URL</attribute>
+             </xpath>  
+             <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="invisible">person_type == 'person'</attribute>
+            </xpath>    
+            <!--<xpath expr="//field[@name='vat']" position="after">
+    <label for="vat" string="Tax ID" 
+           />
+</xpath>-->
+
+<xpath expr="//button[@name='action_view_opportunity']" position="attributes">
+            <attribute name="invisible">context.get('default_free_member')</attribute>
+        </xpath>
+              
+            <xpath expr="//field[@name='vat']" position="attributes">
+                
+                <attribute name="invisible">person_type not in ['company','ngo','others']</attribute>   
+                <attribute name="readonly">0</attribute>   
+                <attribute name="placeholder">Enter Your Tax or Vat ID</attribute>
+            </xpath>
+         
+            <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="invisible">1</attribute>   
+            </xpath>
+            <xpath expr="//field[@name='title']" position="attributes">
+                <attribute name="invisible">1</attribute>  
+             </xpath>
+            <xpath expr="//span[@name='address_name']" position="before">
+            </xpath>
+            <xpath expr="//notebook/page[@name='sales_purchases']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='internal_notes']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='membership']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+              <xpath expr="//notebook/page[@name='accounting']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='parent_id']" position="attributes">
+                <!--<attribute name="domain">person_type == 'company'</attribute>-->
+                
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- <xpath expr="//h1" position="replace">
+              <field name="name"/>
+                <attribute name="invisible">1</attribute>
+            </xpath>-->
+            <xpath expr="//span[@class='o_form_label o_td_label']" position="before">
+           <!-- <field name="name"/>-->
+           <field name="sur_name" placeholder="Surname..." invisible="person_type == 'company'"/>
+            <field name="parent_id" string="Company Name" domain="[('person_type', '=', 'company')]" invisible="person_type == 'company'" Placeholder="Company Name"/>
+                <field name="function" position="move" />
+                <field name="contact_person" invisible="person_type == 'person'" />
+            </xpath>
+            <xpath expr="//span[@name='address_name']" position="replace">
+            <span class="o_form_label o_td_label" name="address_name">
+                                <field name="type" invisible="1" readonly="user_ids" required="not is_company" class="fw-bold"/>
+                                Address
+                            </span>
+            </xpath>
+            <!-- <xpath expr="//field[@name='function']" position="after">
+                <field name="mobile" position="move" />
+            </xpath>    
+            <xpath expr="//field[@name='phone']" position="after">
+                <field name="email" position="move" />
+            </xpath>  -->
+            <xpath expr="//button[@name='action_view_sale_order']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+             <xpath expr="//button[@name='action_view_partner_invoices']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+          <!--  <xpath expr="//div[@class='o_row']" position="before">
+                <field name="sur_name" placeholder="Surname..." invisible="person_type == 'company'"/>
+            </xpath>-->
+            <xpath expr="//field[@name='name']" position="before">
+            
+                <div style="display:flex;position:absolute;" >
+                
+                    <div>
+                        <span style="font-size: 15px;margin-right: 10px;padding-right:15%;"  invisible="person_type != 'company'">Name</span>
+                        <span style="font-size: 15px;margin-right: 5px;" invisible="person_type == 'company'">Name</span>
+                        <field name="name_custom" style="font-size:20px;margin-top:5px" invisible="person_type == 'company'"/>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//field[@id='individual']" position="attributes">
+                <attribute name="invisible">person_type == 'company'</attribute>
+            </xpath>
+            <xpath expr="//field[@id='individual']" position="attributes">
+                <attribute name="style">margin-left:120px;width:50%;font-size:22px</attribute>
+            </xpath>
+            <xpath expr="//field[@id='company']" position="attributes">
+                <attribute name="style">margin-left:120px;width:50%;font-size:22px</attribute>
+            </xpath>
+            <xpath expr="//field[@name='website']" position="after">
+                 <!--<group>
+                      <group>  -->       
+                        
+                          
+                         
+                 <!--   </group>
+                    <group>-->
+                        <field name="co_reg" invisible="person_type == 'person'"/>
+                         <field name="id_number" invisible="person_type == 'ngo'"/>
+                         <field name="ngo_number" invisible="person_type != 'ngo'" /> 
+                          <field name="corridor" />
+                    
+                       <field name="cat_id" options="{'no_create_edit':True, 'no_create':True}"/>     
+                     
+                        <field name="sub_cat_id" options="{'no_create_edit':True, 'no_create':True}"
+                           domain="[('category_id', '=', cat_id)]"/>        
+                   <!--  </group>
+                </group>-->
+             </xpath>
+     
+        </field>
+    </record>
+    
+    <record id="view_partner_form_inherit_new1" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base_vat.view_partner_base_vat_form"/>
+        <field name="arch" type="xml">
+        <xpath expr="//label[@for='vat']" position="attributes">
+                
+                <attribute name="invisible">person_type not in ['company','ngo','others']</attribute>   
+                
+            </xpath>
+         </field>
+    </record>
+
+    <record id="inherit_membership_tree" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="membership.membership_members_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Stakeholders</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Stakeholders</attribute>
+                </xpath>
+                
+        </field>
+    </record>
+     <record id="view_res_partner_member_filter_inherit" model="ir.ui.view">
+            <field name="name">view.res.partner.member.filter.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="membership.view_res_partner_member_filter"/> <!-- Replace 'module_name' with the module where the original view is defined -->
+            <field name="arch" type="xml">
+                <!-- Locate the filter and modify its string -->
+                <xpath expr="//filter[@name='all_members']" position="replace">
+                    <!--<attribute name="invisible">Stakeholders</attribute>  Change filter name -->
+                    <!--<attribute name="readonly">1</attribute>-->
+                </xpath>
+            </field>
+        </record>
+        
+    <record model="ir.actions.act_window" id="membership.action_membership_members">
+        <field name="name">Stakeholders</field>
+        <field name="domain">[("membership_state", "in", ["invoiced", "paid", "free"])]</field>
+        <field name='help'></field>
+    </record>
+    <record model="ir.ui.menu" id="membership.menu_membership">
+        <field name="name">Stakeholders</field>
+    </record>
+    <record model="ir.ui.menu" id="membership.menu_association">
+        <field name="name">Stakeholders</field>
+    </record>
+    <record model="ir.ui.menu" id="membership.menu_membership_products">
+        <field name="name">Stakeholder Products</field>
+    </record>
+</odoo>
