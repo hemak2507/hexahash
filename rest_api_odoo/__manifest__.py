@@ -4,7 +4,7 @@
 #    Cybrosys Technologies Pvt. Ltd.
 #
 #    Copyright (C) 2024-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
-#    Author: Ayana KP (odoo@cybrosys.com)
+#    Author: Sruthi Pavithran (odoo@cybrosys.com)
 #
 #    You can modify it under the terms of the GNU LESSER
 #    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
@@ -21,7 +21,7 @@
 #############################################################################
 {
     "name": "Odoo rest API",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.2",
     "category": "Tools",
     "summary": """This app helps to interact with odoo, backend with help of 
      rest api requests""",

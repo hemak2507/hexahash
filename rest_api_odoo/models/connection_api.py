@@ -4,7 +4,7 @@
 #    Cybrosys Technologies Pvt. Ltd.
 #
 #    Copyright (C) 2024-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
-#    Author: Ayana KP (odoo@cybrosys.com)
+#    Author: Sruthi Pavithran (odoo@cybrosys.com)
 #
 #    You can modify it under the terms of the GNU LESSER
 #    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
@@ -26,7 +26,6 @@ class ConnectionApi(models.Model):
     """This class is used to create an api model in which we can create
     records with models and fields, and also we can specify methods."""
     _name = 'connection.api'
-    _description = 'Connection Rest Api'
     _rec_name = 'model_id'
 
     model_id = fields.Many2one('ir.model', string="Model",

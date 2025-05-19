@@ -24,8 +24,7 @@ Lesser General Public License v3.0 (LGPL v3)
 
 Credits
 -------
-Developer : (V18) Ayana KP,
-            (V16) Yadhushankar,
+Developer : (V16) yadhushankar
             (V17) Sruthi pavithran
 Contact: odoo@cybrosys.com
 

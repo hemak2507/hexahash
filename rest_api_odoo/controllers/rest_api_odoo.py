@@ -4,7 +4,7 @@
 #    Cybrosys Technologies Pvt. Ltd.
 #
 #    Copyright (C) 2024-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
-#    Author: Ayana KP (odoo@cybrosys.com)
+#    Author: Sruthi Pavithran (odoo@cybrosys.com)
 #
 #    You can modify it under the terms of the GNU LESSER
 #    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
@@ -21,6 +21,8 @@
 #############################################################################
 import json
 import logging
+from datetime import datetime
+
 from odoo import http
 from odoo.http import request
 
@@ -77,10 +79,17 @@ class RestApi(http.Controller):
                     datas = []
                     if rec_id != 0:
                         partner_records = request.env[
-                            str(model_name)].search_read(
+                            str(model_name)
+                        ].search_read(
                             domain=[('id', '=', rec_id)],
                             fields=fields
                         )
+
+                        # Manually convert datetime fields to string format
+                        for record in partner_records:
+                            for key, value in record.items():
+                                if isinstance(value, datetime):
+                                    record[key] = value.isoformat()
                         data = json.dumps({
                             'records': partner_records
                         })
@@ -88,10 +97,18 @@ class RestApi(http.Controller):
                         return request.make_response(data=datas)
                     else:
                         partner_records = request.env[
-                            str(model_name)].search_read(
+                            str(model_name)
+                        ].search_read(
                             domain=[],
                             fields=fields
                         )
+
+                        # Manually convert datetime fields to string format
+                        for record in partner_records:
+                            for key, value in record.items():
+                                if isinstance(value, datetime):
+                                    record[key] = value.isoformat()
+
                         data = json.dumps({
                             'records': partner_records
                         })
@@ -194,8 +211,8 @@ class RestApi(http.Controller):
         model = kw.get('model')
         username = request.httprequest.headers.get('login')
         password = request.httprequest.headers.get('password')
-        credential = {'login': username, 'password': password, 'type': 'password'}
-        request.session.authenticate(request.session.db, credential)
+        request.session.authenticate(request.session.db, username,
+                                     password)
         model_id = request.env['ir.model'].search(
             [('model', '=', model)])
         if not model_id:
@@ -219,16 +236,15 @@ class RestApi(http.Controller):
     def odoo_connect(self, **kw):
         """This is the controller which initializes the api transaction by
         generating the api-key for specific user and database"""
+
         username = request.httprequest.headers.get('login')
         password = request.httprequest.headers.get('password')
         db = request.httprequest.headers.get('db')
         try:
             request.session.update(http.get_default_session(), db=db)
-            credential = {'login': username, 'password': password,
-                          'type': 'password'}
-
-            auth = request.session.authenticate(db, credential)
-            user = request.env['res.users'].browse(auth['uid'])
+            auth = request.session.authenticate(request.session.db, username,
+                                                password)
+            user = request.env['res.users'].browse(auth)
             api_key = request.env.user.generate_api(username)
             datas = json.dumps({"Status": "auth successful",
                                 "User": user.name,
