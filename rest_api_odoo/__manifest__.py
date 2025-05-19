@@ -21,7 +21,7 @@
 #############################################################################
 {
     "name": "Odoo rest API",
-    "version": "18.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Tools",
     "summary": """This app helps to interact with odoo, backend with help of 
      rest api requests""",
