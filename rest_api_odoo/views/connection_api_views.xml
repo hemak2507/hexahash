@@ -22,9 +22,9 @@
             </form>
         </field>
     </record>
-    <!-- List view for 'connection.api' model.  -->
-    <record id="connection_api_view_list" model="ir.ui.view">
-        <field name="name">connection.api.view.list</field>
+    <!-- Tree view for 'connection.api' model.  -->
+    <record id="connection_api_view_tree" model="ir.ui.view">
+        <field name="name">connection.api.view.tree</field>
         <field name="model">connection.api</field>
         <field name="arch" type="xml">
             <list>
@@ -36,7 +36,7 @@
             </list>
         </field>
     </record>
-    <!-- Action  for 'connection.api' model with List and form views.  -->
+    <!-- Action  for 'connection.api' model with Tree and form views.  -->
     <record id="rest_api_root_action" model="ir.actions.act_window">
         <field name="name">Rest API Records</field>
         <field name="type">ir.actions.act_window</field>
